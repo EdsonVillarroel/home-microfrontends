@@ -18,12 +18,12 @@
     -->
   
     <main>
-      <redirect from="/" to="/home-microfrontends"></redirect>
-      <route path="app">
-        <application name="@app/home-microfrontends"></application>
+      <redirect from="/" to="/module1-microfrontend"></redirect>
+      <route path="module2-microfrontend">
+        <application name="@app/module2-microfrontend"></application>
       </route>
       <route default>
-        <application name="@app/app"></application>
+        <application name="@app/module1-microfrontend"></application>
       </route>
     </main>
   </single-spa-router>

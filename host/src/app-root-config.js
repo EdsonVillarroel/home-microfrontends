@@ -10,15 +10,40 @@ const routes = constructRoutes(microfrontendLayout);
 const applications = constructApplications({
   routes,
   loadApp({ name }) {
-    const moduleMap = {
-      "@app/home-microfrontends": () => import("ngmfe1/MFEModule1"),
-      "@app/app": () => import("ngmfe2/MFEModule2"),
-    };
-    return moduleMap[name]();
+    console.log("name Root",name);
+    return System.import(name);
   },
 });
 const layoutEngine = constructLayoutEngine({ routes, applications });
+
 applications.forEach(registerApplication);
 layoutEngine.activate();
 start();
 
+
+// import { registerApplication, start, LifeCycles } from "single-spa";
+
+// // registerApplication({
+// //   name: "@single-spa/welcome",
+// //   app: () =>
+// //     System.import<LifeCycles>(
+// //       "https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js"
+// //     ),
+// //   activeWhen: ["/"],
+// // });
+
+// registerApplication({
+//   name: "module1-microfrontend",
+//   app: () => System.import<LifeCycles>("module1-microfrontend"),
+//   activeWhen: ["/"]
+// });
+// // registerApplication({
+// //   name: "@module1-microfrontend/module2",
+// //   app: () => System.import<LifeCycles>("module1-microfrontend/module2"),
+// //   activeWhen: ["/"],
+// // });
+
+
+// start({
+//   urlRerouteOnly: true,
+// });
